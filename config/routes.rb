@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :badges, except: %i[edit update]
   resources :submits, only: %i[create] do
     get :success, on: :member
+    get :failure, on: :member
   end
 end

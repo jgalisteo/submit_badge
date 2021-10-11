@@ -1,5 +1,5 @@
 class SubmitsController < ApplicationController
-  before_action :set_badge, only: :success
+  before_action :set_badge, only: %i[success failure]
 
   # POST /submits
   def create
@@ -7,6 +7,8 @@ class SubmitsController < ApplicationController
     SubmitBadgeService.new(badge, PostHashService).run
 
     redirect_to success_submit_path(badge)
+  rescue PostHashError
+    redirect_to failure_submit_path(badge)
   end
 
   private

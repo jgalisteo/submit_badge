@@ -1,0 +1,2 @@
+class PostHashError < StandardError
+end

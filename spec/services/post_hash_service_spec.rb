@@ -9,21 +9,31 @@ RSpec.describe PostHashService do
   subject(:service) { described_class.new(hash) }
 
   describe '#run' do
-    it 'calls transport#post with correct args' do
-      uri = URI.join(ENV.fetch('CHAINPOINT_URL'), 'hashes')
-      body = {hashes: [hash]}.to_json
-      headers = {
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json'
-      }
+    context 'when all is ok' do
+      it 'calls transport#post with correct args' do
+        uri = URI.join(ENV.fetch('CHAINPOINT_URL'), 'hashes')
+        body = {hashes: [hash]}.to_json
+        headers = {
+          'Accept' => 'application/json',
+          'Content-Type' => 'application/json'
+        }
 
-      expect(transport).to receive(:post).with(uri, body, headers)
+        expect(transport).to receive(:post).with(uri, body, headers)
 
-      service.run
+        service.run
+      end
+
+      it 'returns chainpoint response' do
+        expect(service.run).to eq response_body
+      end
     end
 
-    it 'returns chainpoint response' do
-      expect(service.run).to eq response_body
+    context 'when something goes wrong' do
+      it 'raises PostHashError' do
+        allow(transport).to receive(:post).and_raise('boom')
+
+        expect { service.run }.to raise_error(PostHashError)
+      end
     end
   end
 end

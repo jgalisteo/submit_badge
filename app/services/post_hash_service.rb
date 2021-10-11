@@ -14,6 +14,8 @@ class PostHashService
 
   def run
     JSON.parse(Net::HTTP.post(ENDPOINT, body, HEADERS).body)
+  rescue
+    raise PostHashError
   end
 
   private
