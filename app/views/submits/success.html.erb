@@ -1,0 +1,20 @@
+<h1>
+  Badge Submitted!
+</h1>
+
+<p>
+  <strong>Badge Id:</strong>
+  <%= @badge.id %>
+</p>
+
+<p>
+  <strong>Hash:</strong>
+  <%= @badge.to_sha256 %>
+</p>
+
+<p>
+  <strong>Proof Id:</strong>
+  <%= @badge.proof_id %>
+</p>
+
+<%= link_to 'Go to badge', badge_path(@badge) %>

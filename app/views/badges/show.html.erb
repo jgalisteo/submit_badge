@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Id:</strong>
+  <%= @badge.id %>
+</p>
+
+<p>
   <strong>Date:</strong>
   <%= @badge.date %>
 </p>
@@ -9,5 +14,17 @@
   <strong>Name:</strong>
   <%= @badge.name %>
 </p>
+
+<% if @badge.proof_id.blank? %>
+  <%= form_tag "/submits", method: :post do %>
+    <%= hidden_field_tag 'badge_id', @badge.id %>
+    <%= submit_tag 'Submit to Chainpoint' %>
+  <% end -%>
+<% else %>
+  <p>
+    <strong>Proof Id:</strong>
+    <%= @badge.proof_id %>
+  </p>
+<% end -%>
 
 <%= link_to 'Back', badges_path %>
