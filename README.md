@@ -1,24 +1,38 @@
-# README
+# Submit Badge to Chainpoint
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails app to submit badge information to Chainpoint.
 
-Things you may want to cover:
+## Configuration
 
-* Ruby version
+Ensure that you have ruby 3.0.2 and bundler installed, then:
 
-* System dependencies
+```
+bundle install
+```
 
-* Configuration
+The next step is to setup the database:
 
-* Database creation
+```
+bundle exec rails db:migrate
+```
 
-* Database initialization
+Finally, start development server:
 
-* How to run the test suite
+```
+bundle exec rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+The app needs to connect to Chainpoint. The endpoint can be configured with the env variable
+`CHAINPOINT_URL`:
 
-* Deployment instructions
+```
+CHAINPOINT_URL=<chainpoint-url> bundle exec rails server
+```
 
-* ...
+## Tests
+
+For running tests:
+
+```
+bundle exec rspec
+```
