@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_143343) do
+ActiveRecord::Schema.define(version: 2021_10_05_163109) do
 
   create_table "badges", force: :cascade do |t|
     t.date "date"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "proof_id"
   end
 
 end
