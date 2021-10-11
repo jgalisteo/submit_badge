@@ -35,6 +35,9 @@
 # Ignore local files
 .env.*.local
 
+# Ignore simplecov
+/coverage
+
 /public/packs
 /public/packs-test
 /node_modules
